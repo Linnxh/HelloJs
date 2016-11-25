@@ -138,6 +138,8 @@
                 width: width - 10,
                 height: height - 10
             });
+
+
             this.popupWin.animate({
                 width: width,
                 height: height,
