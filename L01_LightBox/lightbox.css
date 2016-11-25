@@ -1,0 +1,194 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-size: 100%;
+    font: inherit;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    line-height: 1;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+object, :focus {
+    outline: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section /* HTML 5 */
+{
+    display: block;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+a img {
+    border: none;
+}
+
+input, button, textarea, select, optgroup, option {
+    font-size: 100%;
+    font: inherit;
+}
+
+.al {
+    text-align: left;
+}
+
+.ar {
+    text-align: right;
+}
+
+.ac {
+    text-align: center;
+}
+
+.lc {
+    margin: 0 auto;
+}
+
+.fl, .il .fl {
+    float: left;
+}
+
+.fr, .il .fr {
+    float: right;
+}
+
+.fc, .il .fc {
+    float: none;
+    clear: both;
+}
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+.il {
+    list-style: none;
+}
+
+.il li {
+    float: left;
+}
+
+/*****以上是样式重置代码************/
+
+#G-lightbox-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 10000;
+    display: none;
+}
+
+#G-lightbox-container {
+    position: fixed;
+    left: 50%;
+    top: 0px;;
+    width: 400px;
+    z-index: 10001;
+    margin-left: -200px;
+    display: none;
+}
+
+#G-lightbox-container .lightbox-img-box {
+    position: relative;
+    border: 5px solid #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    background: url("icon/loading.gif") no-repeat center #fff;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-btn {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    z-index: 1;
+    height: 100%;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-btn.lightbox-prev-btn {
+    left: 0;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-btn.lightbox-next-btn {
+    right: 0;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-btn.lightbox-prev-btn-show {
+    background: url("icon/prev.png") no-repeat left center;
+    cursor: pointer;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-btn.lightbox-next-btn-show {
+    background: url("icon/next.png") no-repeat right center;
+    cursor: pointer;
+}
+
+#G-lightbox-container .lightbox-img-box .lightbox-image {
+    display: block;
+}
+
+#G-lightbox-container .lightbox-caption-box {
+    position: relative;
+    background-color: #a2a1a5;
+    margin: 0 5px;
+    margin-top: -60px;
+    padding: 10px;
+    opacity: 0.5;
+    z-index: 2;
+}
+
+#G-lightbox-container .lightbox-caption-box .lightbox-caption-left {
+    color: #ffffff;
+}
+
+.lightbox-caption-box .lightbox-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    background: url("icon/close.png");
+    width: 27px;
+    height: 27px;
+}
+
+
+
+
+
+
+
+
+
+
