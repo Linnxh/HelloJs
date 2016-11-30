@@ -135,6 +135,7 @@
             width = width * scale;
             height = height * scale;
             this.prcViewArea.animate({
+
                 width: width - 10,
                 height: height - 10
             });
