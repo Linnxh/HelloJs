@@ -1,0 +1,180 @@
+1、jq对象是dom对象的一个包装集，其实就是个伪数组
+    如：jq转化为dom---->$(e).get(0)
+       dom转化为jq---->$(e)
+
+       $("p.intro")           所有 class="intro" 的 <p> 元素
+       $("ul li:first")       每个 <ul> 的第一个 <li> 元素
+       $("[href$='.jpg']")    所有带有以 ".jpg" 结尾的属性值的 href 属性
+
+
+2、选择器
+
+    基本筛选选择器
+        $(".div:first")
+        $(".div:last")
+        $(".div:even")   //偶数
+        $(".div:odd").
+        $(".div:eq(2)")
+        $(".div:gt(3)")
+        $(".div:lt(3)")   //小于索引值3的
+     子选择器
+        $('div > p') 选择所有div元素里面的子元素P
+     后代选择器
+        $('div  p') 选择所有div元素里面的p元素
+     相邻兄弟选择器
+        $(".prev + div") 选取prev后面的第一个的div兄弟节点
+     一般相邻选择器
+        $(".prev ~ div")选取prev后面的所有的div兄弟节点
+
+     ---------------------------------------------------
+     $( "parent > child" )
+     子选择器：选择所有指定“parent”元素中指定的"child"的直接子元素。
+
+     $("ancestor descendant")
+     后代选择器：选择给定的祖先元素的所有后代元素, 一个元素的后代可能是该元素的一个孩子，孙子，曾孙等
+
+     $("prev + next")
+     相邻兄弟选择器：选择所有紧接在“prev”元素后的“next”元素
+
+     $("prev ~ siblings")
+     一般兄弟选择器：匹配“prev”元素之后的所有 兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器
+
+
+    内容选择器
+    $(":parent")=查找含有子元素或者文本元素的元素
+
+    $(":empty")=查找不含有子元素或者文本元素的元素
+
+    $(":contains（text）")=查找含有文本的元素
+
+    $(":has(selector)")=查找含有指定元素的元素
+
+    可见性选择器
+   visibility: hidden 或 opacity: 0占用空间布局。JQ能识别它，所以被认为是可见的。而width:0;height:0;和display:none;不占用空间布局，JQ不能识别出来。
+
+   属性筛选选择器
+   (1)$("div[name=p1]")选择div元素中name属性是p1的元素
+
+   (2)$("div[name]")选择div元素中所有具有name属性的元素
+
+   (3)$("div[name|=a]")选择div元素中name属性的值只包含一个连字符a或以a为前缀且以"-"为分隔的元素（如：name="a-bcd"）
+
+   (4)$("div[name~=a]")选择div元素中name属性的值包含字符串a且以空格分隔	元素（如：name="a  b"）
+   (5)$("div[name^=ab]")选择div元素中name属性的值是以字符串ab开头的元素
+
+   (6)$("div[name$=ab]")选择div元素中name属性的值是以字符串ab结尾的元素
+
+   (7)$("div[name*=ab]")选择div元素中name属性的值包含字符串ab的元素
+
+   (8)$("div[name!=ab]")选择div元素中name属性的值不等于字符串ab或者没有name属性的元素
+
+    元素筛选选择器
+    :first只匹配一个单独的元素，
+    但是:first-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。这相当于:nth-child(1)
+    :last 只匹配一个单独的元素，
+    :last-child 选择器可以匹配多个元素：即，为每个父级元素匹配最后一个子元素
+    如果子元素只有一个的话，:first-child与:last-child是同一个
+     :only-child匹配某个元素是父元素中唯一的子元素，就是说当前子元素是父元素中唯一的元素，则匹配
+    jQuery实现:nth-child(n)是严格来自CSS规范，所以n值是“索引”，也就是说，从1开始计数，:nth-child(index)从1开始的，而eq(index)是从0开始的
+    nth-child(n) 与 :nth-last-child(n) 的区别前者是从前往后计算，后者从后往前计算
+
+    表单元素选择器
+    $(':input')         //:input 选择器基本上选择所有表单控件
+    $('input:text')     //匹配所有input元素中类型为text的input元素
+
+    表单对象属性选择器
+
+    $(':enabled')
+
+    $(':disabled')
+
+    $(':checked')
+
+    $(':selected')
+
+4、this，表示当前的上下文对象是一个html对象，可以调用html对象所拥有的属性和方法。
+  $(this),代表的上下文对象是一个jquery的上下文对象，可以调用jQuery的方法和属性值。
+5、
+  .html(),.text()和.val()的差异总结：
+  .html(),.text(),.val()三种方法都是用来读取选定元素的内容；只不过.html()是用来读取元素的html内容（包括html标签），.text()用来读取元素的纯文本内容，包括其后代元素，.val()是用来读取表单元素的"value"值。其中.html()和.text()方法不能使用在表单元素上,而.val()只能使用在表单元素上；另外.html()方法使用在多个元素上时，只读取第一个元素；.val()方法和.html()相同，如果其应用在多个元素上时，只能读取第一个表单元素的"value"值，但是.text()和他们不一样，如果.text()应用在多个元素上时，将会读取所有选中元素的文本内容。
+  .html(htmlString),.text(textString)和.val(value)三种方法都是用来替换选中元素的内容，如果三个方法同时运用在多个元素上时，那么将会替换所有选中元素的内容。
+  .html(),.text(),.val()都可以使用回调函数的返回值来动态的改变多个元素的内容。
+6、数据存储
+    1静态：$.data(ele,key,value);里面三个参数分别代表要存储数据的节点、数据名称、数据内容；
+
+    2动态：ele.data(key,value)；表示某个节点存的数据名和数据内容。
+
+
+
+
+DOM篇
+
+1、
+    append()前面是被插入的对象，后面是要在对象内插入的元素内容
+    appendTo()前面是要插入的元素内容，而后面是被插入的对象
+
+2、
+    如果我们通过empty方法移除里面div的所有元素，它只是清空内部的html代码，但是标记仍然留在DOM中
+    但是remove会将元素自身移除，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据。
+    //通过empty处理
+    $('.hello').empty()
+    //结果：<p>慕课网</p>被移除
+    <div class="hello"></div>
+    //通过remove处理
+    $('.hello').remove()
+    //结果：<div class="hello"><p>慕课网</p></div> 全部被移除
+    //节点不存在了,同事事件也会被销毁
+3、
+    //通过detach方法删除元素
+    //只是页面不可见，但是这个节点还是保存在内存中
+    //数据与事件都不会丢失
+    p = $("p").detach()
+
+    //把p元素在添加到页面中
+    //事件还是存在
+    $("body").append(p);
+
+
+4、
+    JavaScript部分
+    $("div").on('click', function() {//执行操作})
+
+    //clone处理一
+    $("div").clone()   //只克隆了结构，事件丢失
+
+    //clone处理二
+    $("div").clone(true) //结构、事件与数据都克隆
+
+5、
+    children()：向下找儿子
+
+    parent()：向上找爸爸
+
+    parents()：向上找祖宗
+
+    find()：向下查找后代
+----------------------------事件篇-----------------------
+
+1、$("#elem").click(function(){})  //快捷方式
+  $("#elem").on('click',function(){}) //on方式
+    多个事件绑定同一个函数
+
+   $("#elem").on("mouseover mouseout",function(){ });
+   多个事件绑定不同函数
+
+  $("#elem").on({
+      mouseover:function(){},
+      mouseout:function(){},
+  });
+
+2、
+    //给body绑定一个click事件
+    //没有直接a元素绑定点击事件
+    //通过委托机制，点击a元素的时候，事件触发
+    $('body').on('click', 'a', function(e) {
+       alert(e.target.textContent)
+    })
+3、$('#elem').on('click', function() {
+      alert("触发系统事件")
+   });
+   $('#elem').trigger('click');

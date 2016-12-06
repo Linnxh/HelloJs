@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <script src="jquery-1.8.3.min.js"></script>
+    <link type="text/css" href="css.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="head">
+    <img class="head_banner" src="img/signBanner.jpg">
+</div>
+<div class="content">
+    <div class="signContent">
+        <ul>
+            <li class="signli">
+                <p>第一天</p>
+            </li>
+            <li class="signli">
+                <p>第一天</p>
+            </li>
+            <li class="signli">
+                <p>第一天</p>
+            </li>
+            <li class="signli">
+                <p>第一天</p>
+            </li>
+            <li class="signli">
+                <p>第一天</p>
+            </li>
+        </ul>
+
+    </div>
+    <div class="signBtnWrap">
+        <button class="signBtn"></button>
+    </div>
+    <div class="line">
+        ------------------------------------------------------------------------------------
+    </div>
+    <div class="signRules">
+        <div class="signRuleTitle">
+            <img src="img/signinTitle.png">
+        </div>
+        <div class="signRuleContent">
+            <p>1、活动时间肯德基分类看电视就付款了快递劫匪可说的</p>
+            <p>1、活动时间肯德基分类看电视就付款了快递劫匪分类看电视就付款了快递劫分类看电视就付款了快递劫可说的</p>
+            <p>1、活动时间肯德基分类看电视就付款了快递劫匪可说的</p>
+        </div>
+    </div>
+</div>
+
+<div class="mask show"></div>
+<div class="threeAlertWrap hidden">
+    <div class="threeAlert">
+        <img class="close" src="img/del.png">
+        <div class="centerContent">
+            <span>累计签到3天，获得5元优惠券！</span>
+            <img class="youhuiquan" src="img/yuhuiquan.png">
+        </div>
+        <button class="besure">确定</button>
+        <button class="ckyouhuiquan">查看优惠券</button>
+    </div>
+</div>
+<div class="FiveAlertWrap">
+    <img class="close" src="img/del.png">
+    <div class="FiveAlercenterContent">
+        <div class="textwrap">
+            <span class="text">500元礼包！</span>
+            <div>
+                <img class="youhuiquan" src="img/gift.png">
+            </div>
+        </div>
+
+    </div>
+    <button class="besure">立即前往</button>
+    <button class="ckyouhuiquan">一会再去</button>
+</div>
+<script>
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 720;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+
+    $(".signBtn").live("click", function () {
+        var li = $(".signli");
+        for (var i = 0; i < li.length; i++) {
+            if (!$(li[i]).hasClass("signSucess")) {
+                if (i == 0) {//签到一天
+                    $(li[i]).addClass("signSucess");
+                    $(li[i]).addClass("signFirst");
+                } else if (i == 1) {
+                    $(li[i]).addClass("signSucess");
+                } else if (i == 2) {//签到三天
+                    $(li[i]).addClass("signThree");
+                    $(li[i]).addClass("signSucess");
+
+//                    $(".threeAlertWrap").removeClass("hidden");
+//                    $(".threeAlertWrap").addClass("show");
+//                    $(".mask").height(document.documentElement.clientHeight).removeClass("hidden").addClass("show");
+
+                    $(".threeAlertWrap").show();//todo 动画显示
+                    $(".mask").height(document.documentElement.clientHeight).show();
+
+                } else if (i == 3) {
+                    $(li[i]).addClass("signSucess");
+                } else if (i == 4) {//签到五天
+                    $(li[i]).addClass("signFive");
+                    $(li[i]).addClass("signSucess");
+                }
+                $(li[i]).find("p").html("");
+                break;
+            }
+        }
+
+        $(".close").live("click", function () {
+            $(".threeAlertWrap").hide();
+            $(".mask").hide();
+
+        });
+    });
+</script>
+
+</body>
+</html>

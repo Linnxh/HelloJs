@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>签到有礼</title>
+    <link rel="stylesheet" type="text/css" href="sign.css">
+</head>
+<body>
+
+
+
+<div class="signWrap">
+    <div class="signBanner">
+        <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/signBanner.jpg?v=2.0.1.3">
+    </div>
+    <div class="signText">
+        <ul id="qiandaoul">
+
+
+
+
+        </ul>
+        <div class="clear"></div>
+        <div class="signBtn">
+            <button class="active"></button>
+
+        </div>
+    </div>
+    <div class="signRule">
+        <div class="title"></div>
+        <div class="text">
+            <div class="first">
+                <span>1、活动时间：</span>
+                <div class="time">
+                    <span>2016年12月1日-12月31日。</span>
+                </div>
+            </div>
+            <div class="sec">
+                <p>2、活动期间，超市用户登陆掌合商城PC端和APP端均可参加活动，<span class="red">每个用户仅可参与一次累计签到得券及翻纸牌赢大奖活动。</span></p>
+            </div>
+            <div class="three">
+                <p>3、累计签到3次，即可获得掌合商城5元代金券（满100元使用）。代金券实时到账，请注意查收。</p>
+            </div>
+            <div class="frou">
+                <p>4、累计签到5次，即可参与“翻纸牌赢豪礼”活动，有机会赢取“500元商品礼包”及百万礼券，奖品数量有限，先到先得！<br><a class="enter" href="/activity/fanzhipaiview?ssid=73&userid=269993&supermarketid=248715">立即前往翻纸牌&gt;&gt;</a></p>
+            </div>
+
+            <div class="five">
+                <p>5、 注：累计签到获得代金券可用于全平台进货使用，有效期为12月3日-12月31日。</p>
+            </div>
+            <div class="six">
+                <p>6、 本活动最终解释权归掌合天下（北京）信息技术有限公司所有。</p>
+            </div>
+            <div class="info">
+                <p style="margin-top: 10px;">您通过本软件参加的任何商业活动或者金币相关活动，均与Apple Inc.无关。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mask" style="display: none;"></div>
+<div class="threeAlert alertBox" style="display: none;">
+    <div class="title">
+        <em class="del"></em>
+    </div>
+    <div class="content">
+        <div class="text">
+            <p>已累计签到3天，获得5元优惠券！</p>
+            <div class="YHQImg">
+                <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/yuhuiquan.png?v=2.0.1.3">
+            </div>
+            <div class="btnWrap">
+                <button class="QDbtn btnClose">确定</button>
+                <button class="CKbtn">查看优惠券</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fiveAlert alertBox" style="display: none;">
+    <div class="title">
+        <em class="del"></em>
+    </div>
+    <div class="content">
+        <div class="text">
+            <p>500元商品礼包！</p>
+            <div class="ipadImg">
+                <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/gift.png?v=2.0.1.3">
+            </div>
+            <button class="QDbtn" onclick="javascript: window.location.href = '/activity/fanzhipaiview?ssid=73&userid=269993&supermarketid=248715'">立即前往</button>
+            <button class="QXbtn btnClose">一会再去</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 750;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+    $(function () {
+        $('.signBtn button').live('click', function () {
+            var obj = $(this);
+            if (!$(obj).hasClass("active")) {
+                $(obj).addClass("active");
+                var param = {
+                    "ssid": '73', "userid": '269993', "supermarketid": '248715', "prizeActId": '0', "couponActId": '0', "prizeSatisfy": '0', "couponSatisfy": '0', "signInCount": '0', "m": Math.random()
+                };
+                //签到
+                $.ajax({
+                    url: "/activity/qiandao",    //请求的url地址
+                    dataType: "json",
+                    data: param,
+                    type: "post",   //请求方式
+                    success: function (data) {
+                        if (data.res >= 1) {
+                            if (data.res == 2) {
+                                alert(data.msg);//今日已签过了
+                                return;
+                            }
+                            var li = $("#qiandaoul li");
+                            for (var i = 0; i < li.length; i++) {
+                                if (!$(li[i]).hasClass("qiandaoli")) {
+                                    $(li[i]).addClass("qiandaoli");
+                                    $(li[i]).addClass("signFirst");
+                                    break;
+                                }
+                            }
+
+                            if (data.res == 4) {
+                                $('.mask').show().height($(document).height());
+                                //yhj  alert
+                                $('.threeAlert').show();
+                            }
+                            if (data.res == 3 || data.res == 5) {
+                                $('.mask').show().height($(document).height());
+                                //fzp alert
+                                $('.fiveAlert').show();
+                            }
+
+                        } else {
+                            alert("签到失败");
+                            $(obj).removeClass("click");
+                        }
+                        // tongji();
+                    }
+                });
+
+            }
+        })
+    })
+    $('.del,.btnClose').live('click', function () {
+        $('.alertBox').hide()
+        $('.mask').hide().height(0);;
+    })
+    $(".CKbtn").click(function () {
+        try {
+            WebViewFunc.jsCallWebViewGoCoupons();
+        }
+        catch (e) {
+            window.location.href = "/activity/QianDaoView?ssid=" +73 +"&userid=" +269993 +"&supermarketid=" +248715 +"&gocoupon=1";
+        }
+    });
+
+    function tongji() {
+        try {
+            WebViewFunc.jsCallWebViewUmeng("h5qiandao")
+        }
+        catch (e) {
+            window.location.href = "/activity/QianDaoView?ssid=" +73 +"&userid=" +269993 +"&supermarketid=" +248715 +"&ymkey=h5qiandao";
+        }
+    }
+</script>
+<script type='text/javascript'>
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function () {
+        _vds.push(['setAccountId', '96df24f07db1c09e']);
+        (function () {
+            var vds = document.createElement('script');
+            vds.type = 'text/javascript';
+            vds.async = true;
+            vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(vds, s);
+        })();
+    })();
+</script>

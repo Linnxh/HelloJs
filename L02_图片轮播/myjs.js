@@ -39,13 +39,18 @@
         this.setSettingValue();
         this.setPosterPos();
 
-
-        this.nextBtn.click(function () {
+        this.nextBtn.on("click",function () {
             if (self.rotateFlag) {
                 self.rotateFlag = false;
                 self.carouseRoate("left");
             }
         });
+        // this.nextBtn.click(function () {
+        //     if (self.rotateFlag) {
+        //         self.rotateFlag = false;
+        //         self.carouseRoate("left");
+        //     }
+        // });
         this.prevBtn.click(function () {
             if (self.rotateFlag) {
                 self.rotateFlag = false;
@@ -69,7 +74,8 @@
         autoPlay: function () {
             var self = this;
             this.timer = window.setInterval(function () {
-                self.nextBtn.click();
+                // self.nextBtn.click();
+                self.nextBtn.trigger("click");//根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为
             }, this.setting.delay)
         },
         carouseRoate: function (type) {

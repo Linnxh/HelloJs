@@ -1,0 +1,283 @@
+html {
+    font-family: "微软雅黑"
+}
+
+body {
+    background: #ee3928;
+}
+
+b, blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.font-red {
+    color: #df2927;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right
+}
+
+.main-banner {
+    width: 100%;
+}
+
+.main-banner img {
+    width: 100%;
+}
+
+.scratch {
+    background: url('http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/scratch-bg.png') no-repeat center;
+    background-size: 100%;
+    width: calc(100% - 0.2rem);
+    width: 7.3rem;
+    height: 1.55rem;
+    padding: 0.2rem 0.1rem;
+    position: relative
+}
+
+.scratch .theme {
+    font-size: 0.24rem;
+    color: #ff0033;
+    font-weight: bold;
+}
+
+.scratch .on-time {
+    font-size: 0.2rem;
+    color: #ff0033;
+    padding-top: 0.1rem;
+}
+
+.scratch .scratch-left {
+    width: 2.6rem;
+    margin-left: 2.3rem;
+    float: left;
+}
+
+.scratch .scratch-right-gray {
+    background: #e8e9e9;
+    width: 2.28rem;
+    height: 1.4rem;
+    border-radius: 0.1rem;
+    font-size: 0.2rem;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    margin-left: 0.1rem;
+    display: table;
+}
+
+.scratch .scratch-right-gray p {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.scratch .scratch-right {
+    background: none;
+    width: 1.98rem;
+    height: 1.1rem;
+    border-radius: 0.1rem;
+    font-size: 0.22rem;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 0.2rem;
+    padding: 0.15rem;
+    color: #fff;
+    position: absolute;
+    right: 0.2rem;
+    cursor: pointer;
+}
+
+.scratch .scratch-animate {
+    cursor: pointer;
+}
+
+.scratch .scratch-animate {
+    background: #ff0099;
+    width: 2.28rem;
+    height: 1.4rem;
+    border-radius: 0.1rem;
+    margin-left: 0.2rem;
+    position: absolute;
+    left: 4.85rem;
+}
+
+.scratch .scratch-right-btn {
+    color: #ffff33;
+    margin-top: 0.1rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -25%;
+}
+
+.scratch .scratch-right-btn em {
+    width: 0.25rem;
+    height: 0.25rem;
+    margin-left: 0.1rem;
+    float: left;
+    margin-top: 0.05rem;
+}
+
+.scratch .scratch-right-btn em img {
+    width: 0.25rem;
+    height: 0.25rem;
+    float: right;
+}
+
+.scratch .lottery {
+    color: #000;
+    font-size: 0.18rem;
+    margin-top: 1.4rem;
+    float: right;
+    margin-right: 0.25rem;
+}
+
+.rule {
+    font-size: 0.28rem;
+    color: #ffd525;
+    padding: 0.3rem;
+}
+
+.rule a {
+    font-size: 0.28rem;
+    color: #ffd525;
+    float: right;
+}
+
+.rule span {
+    display: inline-block;
+}
+
+.main-bg2 {
+    width: 100%;
+    height: 1.48rem;
+    margin-top: 0.5rem;
+}
+
+.main-bg3 {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg4 {
+    width: 100%;
+    height: 1.51rem;
+}
+
+.main-bg5 {
+    width: 100%;
+    height: 2rem;
+}
+
+.main-bg6 {
+    width: 100%;
+    height: 1.5rem;
+}
+
+.main-bg7 {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg8 {
+    width: 100%;
+    height: 1.82rem;
+}
+
+.main-bg9 {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg10 {
+    width: 100%;
+    height: 0.82rem;
+}
+
+.main-bg2 img {
+    width: 100%;
+    height: 1.48rem;
+}
+
+.main-bg3 img {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg4 img {
+    width: 100%;
+    height: 1.51rem;
+}
+
+.main-bg5 img {
+    width: 100%;
+    height: 2rem;
+}
+
+.main-bg6 img {
+    width: 100%;
+    height: 1.5rem;
+}
+
+.main-bg7 img {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg8 img {
+    width: 100%;
+    height: 1.82rem;
+}
+
+.main-bg9 img {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.main-bg10 img {
+    width: 100%;
+    height: 0.82rem;
+    margin-bottom: 1.2rem;
+}
+
+.mask {
+    background: #000;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9
+}
+
+.alertRule {
+    background: #fff;
+    padding: 0.4rem;
+    color: #666;
+    font-size: 0.22rem;
+    position: fixed;
+    left: 0;
+    width: 6.8rem;
+    width: calc(100% - 0.8rem);
+    z-index: 10;
+    top: 50%;
+}
+
+.delBtn {
+    margin-top: -1.1rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    float: right;
+}
+
+.delBtn img {
+    width: 0.4rem;
+    height: 0.4rem;
+}

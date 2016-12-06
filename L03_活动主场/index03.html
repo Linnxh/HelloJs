@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <title>活动主场</title>
+    <link rel="stylesheet" type="text/css" href="homeMain.css">
+    <script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+
+<div class="main-banner">
+    <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main-banner.jpg?v=2.0.1.3">
+</div>
+<div class="scratch">
+    <div class="scratch-left">
+        <p class="theme">岁末狂欢，刮大奖！<br>千万礼券准时来抢！</p>
+        <p class="on-time">10:00、14:00、16:00 来拼人品吧！</p>
+    </div>
+    <div id="kaiqiang">
+        <div>
+            <div class="scratch-animate"></div>
+            <div class="scratch-right jsQiang">
+                <p>
+                    <span>本时段可抢5次</span>
+                </p>
+                <p class="scratch-right-btn">
+                    <span class="fl">马上抢</span>
+                    <em><img
+                            src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/scratch-right-btn.png?v=2.0.1.3"></em>
+                </p>
+            </div>
+            <p class="lottery">还有<span class="font-red num">5</span>次抽奖次数</p>
+        </div>
+
+    </div>
+
+</div>
+<div class="rule">
+    <span class="viewRules">查看活动规则</span>
+    <a href="javascript:void(0);" class="CKbtn">查看中奖记录 > </a>
+</div>
+<div class="main-bg2">
+    <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_02.jpg?v=2.0.1.3">
+</div>
+<div class="main-bg3">
+    <a href="/activity/QianDaoView?ssid=73&userid=269993&supermarketid=248715">
+
+        <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_03.jpg?v=2.0.1.3">
+    </a>
+</div>
+
+<div class="main-bg6">
+    <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_06.jpg?v=2.0.1.3">
+</div>
+<div class="main-bg7">
+    <a href="javascript:void(0);" onclick="hongbao()">
+
+        <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_07.jpg?v=2.0.1.3">
+    </a>
+</div>
+<div class="main-bg8">
+    <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_08.jpg?v=2.0.1.3">
+</div>
+<div class="main-bg9">
+    <a href="/activity/ActivityPropagandaView?ssid=73&userid=269993&supermarketid=248715">
+
+        <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_09.jpg?v=2.0.1.3">
+    </a>
+</div>
+<div class="main-bg10">
+    <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/main_bg_10.jpg?v=2.0.1.3">
+</div>
+<div style="font-size: 0.2rem;color:#fff;text-align: center;margin:0.3rem;">
+    <p>您通过本软件参加的任何商业活动或者金币相关活动，均与Apple Inc.无关。</p>
+</div>
+<div class="mask" style="display:none;"></div>
+<div class="alertRule" style="display:none;">
+    <div class="delBtn">
+        <img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/alertMainDel.png?v=2.0.1.3">
+    </div>
+    <div class="context">
+        <p>活动介绍：</p>
+        <p>1、活动期间：2016年12月1日-12月31日。</p>
+        <p>2、活动期间，超市用户登陆掌合商城PC端和APP端均可参加活动，每个用户在10：00、14：00、16：00均会各获得5次抽奖机会。</p>
+        <p>3、10：00-11：00、14：00-15：00、16：00-17：00，三个时间段为抽奖有效时间，抽奖机会当日及当时段有效，当日及当时段未使用不可顺延到次日及下一时段。</p>
+        <p>4、奖品中包含：500元商品礼包、20元优惠券（满300元使用）、5元优惠券（满100元使用），奖品数量有限，来拼人品吧！</p>
+        <p>5、商品礼包奖品发放详询当地服务站，优惠券奖品于中奖后次日18：00前到账，代金券有效期截至到12月31日。</p>
+    </div>
+</div>
+
+
+<script>
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 750;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+    /*点击抽奖按钮效果*/
+    $(".jsQiang").live("click", function () {
+        if ($(".scratch-animate").is(":animated")) {
+            return;
+        }
+        else {
+            var code = -1;
+            var avail = 0;
+            $.ajax({
+                url: "/activity/ZhuChangChouJian",    //请求的url地址
+                dataType: "json",
+                data: {"ssid": '73', "userid": '269993', "supermarketid": '248715', "m": Math.random()},
+                type: "post",   //请求方式
+                async: false,
+                success: function (data) {
+                    code = data.code;
+                    if (code >= 0) {
+                        avail = data.avail;
+                    }
+                }
+            });
+            $(".scratch-animate").css({"width": "0.01rem"});
+            $(".scratch-animate").animate({"width": "2.28rem"}, 300, function () {
+                var html = "";
+                if (code == -1) {
+                    html = "<div class=\"scratch-right-gray\"><p>活动即将开启，来拼人品吧！</p></div>";
+                    $("#kaiqiang").html(html);
+                } else if (code == -2 || code == -3) {
+                    html = "<div class=\"scratch-right-gray\"><p>本场次数用完，亲，下一个时间段再来吧！</p></div>";
+                    $("#kaiqiang").html(html);
+                } else if (code == 0) {
+                    var msg = ["未中奖，加把劲，继续抢！再试试", " 未中奖，运气悄悄离开了！再试试", "未中奖，真可惜，就差一点！再试试"];
+                    html = '<p><span>' + msg[Math.floor(Math.random() * msg.length)] + '</span></p><p class="scratch-right-btn"><span class="fl">马上抢</span><em><img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/scratch-right-btn.png?v=2.0.1.3"></em></p>';
+                    $(".scratch-right").html(html);
+                    $(".num").html(avail);
+                } else if (code > 0) {
+                    var msg = ["一等奖", " 二等奖", "三等奖", "四等奖", "五等奖", "六等奖", "七等奖", "八等奖", "九等奖", "十等奖"];
+                    html = '<p><span>恭喜您获得' + msg[code - 1] + '，继续！！！</span></p><p class="scratch-right-btn"><span class="fl">马上抢</span><em><img src="http://static.zhtxw.cn/mobile/web/cs/images/activity/201612/scratch-right-btn.png?v=2.0.1.3"></em></p>';
+                    $(".scratch-right").html(html);
+                    $(".num").html(avail);
+                } else {
+                    alert("系统错误");
+                }
+            });
+        }
+    });
+
+    var _height = $('.alertRule').height();
+    $('.alertRule').css({"margin-top": -_height / 2});
+    $('.delBtn').bind('click', function () {
+        $(this).parents('.alertRule').hide();
+        $('.mask').hide().height(0);
+    });
+    $('.viewRules').bind('click', function () {
+        $('.alertRule').show();
+        $('.mask').show().height($(document).height());
+    })
+    function hongbao() {
+        try {
+            WebViewFunc.jsCallWebViewGetRed();
+        }
+        catch (e) {
+            window.location.href = "/activity/ZhuChang?ssid=" + 73 + "&userid=" + 269993 + "&supermarketid=" + 248715 + "&goredpackage=1";
+        }
+    }
+    $(".CKbtn").bind("click", function () {
+        try {
+            WebViewFunc.jsCallWebViewGoLotteryRecord();
+        }
+        catch (e) {
+            window.location.href = "/activity/ZhuChang?ssid=" + 73 + "&userid=" + 269993 + "&supermarketid=" + 248715 + "&goprize=1";
+        }
+    });
+</script>
+<script type='text/javascript'>
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function () {
+        _vds.push(['setAccountId', '96df24f07db1c09e']);
+        (function () {
+            var vds = document.createElement('script');
+            vds.type = 'text/javascript';
+            vds.async = true;
+            vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(vds, s);
+        })();
+    })();
+</script>
+</body>
+</html>
