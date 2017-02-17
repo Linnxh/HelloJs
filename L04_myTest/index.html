@@ -51,9 +51,10 @@
     </div>
 </div>
 
-<div class="mask show"></div>
+<div class="mask hidden"></div>
 <div class="threeAlertWrap hidden">
     <div class="threeAlert">
+
         <img class="close" src="img/del.png">
         <div class="centerContent">
             <span>累计签到3天，获得5元优惠券！</span>
@@ -63,19 +64,18 @@
         <button class="ckyouhuiquan">查看优惠券</button>
     </div>
 </div>
-<div class="FiveAlertWrap">
-    <img class="close" src="img/del.png">
-    <div class="FiveAlercenterContent">
-        <div class="textwrap">
-            <span class="text">500元礼包！</span>
+<div class="FiveAlertWrap hidden">
+    <div class="FiveAlert">
+        <img class="close" src="img/del.png">
+        <div class="FiveAlercenterContent">
+            <span style="display: inline-block">500元礼包！</span>
             <div>
                 <img class="youhuiquan" src="img/gift.png">
             </div>
         </div>
-
+        <button class="besure">立即前往</button>
+        <button class="ckyouhuiquan">一会再去</button>
     </div>
-    <button class="besure">立即前往</button>
-    <button class="ckyouhuiquan">一会再去</button>
 </div>
 <script>
     /*设置rem*/
@@ -113,6 +113,9 @@
                 } else if (i == 4) {//签到五天
                     $(li[i]).addClass("signFive");
                     $(li[i]).addClass("signSucess");
+                    $(".FiveAlertWrap").show();//todo 动画显示
+                    $(".mask").height(document.documentElement.clientHeight).show();
+
                 }
                 $(li[i]).find("p").html("");
                 break;
@@ -121,6 +124,7 @@
 
         $(".close").live("click", function () {
             $(".threeAlertWrap").hide();
+            $(".FiveAlertWrap").hide();
             $(".mask").hide();
 
         });

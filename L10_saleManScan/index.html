@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <title>扫码下载</title>
+    <link rel="stylesheet" type="text/css" href="saleman_scan.css">
+</head>
+<body>
+<div class="salemanTips" style="margin-top: 0.3rem">
+    <p> 掌合业务员需要和掌合商城同时安装使用</p>
+</div>
+<div class="saleman_salemantitle">
+    <p> 掌合业务员</p>
+</div>
+<div id="qrSaleMan" class="qrImage"></div>
+
+<div class="salemanTips">
+    <p>微信扫码下载</p>
+</div>
+<div class="saleman_salemantitle">
+    <p> 掌合商城</p>
+</div>
+<div id="qrSaleSupmarket" class="qrImage"></div>
+
+<div class="salemanTips">
+    <p>微信扫码下载</p>
+</div>
+
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<script>
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 750;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+
+    window.onload = function () {
+
+        if (getPlarForm()==1) {//Android
+
+        } else if (getPlarForm()==2) {//Ios
+
+        }
+        $(".qrImage").qrcode({
+            render: "canvas", //canvas方式
+            width: 185,
+            height: 185,
+            text: toUtf8("android地址")
+        });
+    }
+
+    function getPlarForm() {
+        var type = 0;
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isAndroid) {
+            return 1;
+        } else if (isIOS) {
+            return 2;
+        } else {
+            return -1;
+        }
+    }
+
+    function toUtf8(str) {
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for (i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            }
+        }
+        return out;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/css.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="scroll-demo">
+    <ul class="scroll-tab">
+        <li class="tab-item tab-active">第一篇</li>
+        <li class="tab-item ">第二篇</li>
+        <li class="tab-item ">第三篇</li>
+        <li class="tab-item ">第四篇</li>
+    </ul>
+    <div class="scroll-wrap">
+        <div class="scroll-content">
+            <font color="#FF0000" size="2">漫步校园，眼镜更是随处可见</font>
+            <p style="size: 13px">不知从何时，周围的人都开始戴上了眼镜，眼镜也渐渐成了时代的缩影之一。<br>
+
+                眼镜就像是备用的眼睛，当人们用眼不当，视力下降时，配上一副眼镜，立刻眼前就一片清晰，仿佛浓雾散尽。我也有一副眼镜，架在鼻梁上帮我看清这个世界，眼镜真是个好东西。<br>
+
+                走在街上总会看到各式各样的眼镜，漫步校园，眼镜更是随处可见，走进眼镜店，拥挤的人群几乎挑不出不戴眼镜的。按照这个趋势，说不定人类会自动进化出一副眼镜，刚出生就在眼睛前安着，岂不方便多了？<br>
+
+                只为升职加薪。鲜有人顾及眼睛的感觉，因为有备用嘛，时代就随着这些人渐渐走向追求功利的极端，而走向极端的时代又裹挟着更多的人追求功利。而眼镜这个神奇的东西，在时代的这个奇妙的反应式中，是反应物，是催作文网http://wwW.zuoWen8.Com/化剂，也是生成物。<br>
+
+                新航路开辟后，整个世界都逐渐开始奔跑，人人争第一，个个不甘落后，人们开始牺牲各种美好的东西仅仅是为了那蝇头微利。牺牲好奇心，牺牲空闲的时间，牺牲大自然赋予人类的美好环境，直到牺牲健康，不仅是身体健康，还有心理健康。
+            </p>
+        </div>
+        <div class="scroll-bar">
+            <div class="scroll-slider"></div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    (function (win, doc, $) {
+        function CusScrollBar(options) {
+            this._init(options);
+        }
+
+        $.extend(CusScrollBar.prototype, {
+            _init: function (options) {
+                var self = this;
+                self.options = {
+                    scrollDir: "y",
+                    contSelector: "",
+                    barSelector: "",
+                    sliderSelector: ""
+                }
+                $.extend(true, self.options, options || {});
+                self._initDomEvent();
+                console.log(self);
+                return self;
+            },
+
+            _initDomEvent: function () {
+                var opts = this.options;
+                this.$cont = $(opts.contSelector);
+                this.$slider = $(opts.sliderSelector);
+                this.$bar = opts.barSelector ? $(opts.barSelector) : self.$slider.parent();
+                this.$doc = $(doc);
+                this._initSliderDragEvent();
+            },
+            _initSliderDragEvent: function () {
+                var self = this;
+                var slider = this.$slider;
+                var sliderEl = slider[0];
+                if (sliderEl) {
+                    var doc = this.$doc,
+                            dragStartPagePosition,
+                            dragStartScrollPosition,
+                            dragContBarRate;
+
+                    function mouseMoveHandler(e) {
+                        e.preventDefault();
+                        if (dragStartPagePosition == null) {
+                            console.log("dfdsfsdfds")
+                            return;
+                        }
+                        console.log("aaaaaaaaaa")
+//                        self.scrollTo(dragStartPagePosition + (e.pageY - dragStartPagePosition) * dragContBarRate);
+                        self.scrollTo(200);
+                    }
+
+                    slider.on("mousedown", function (e) {
+                        e.preventDefault();
+                        dragStartPagePosition = e.pageY;
+                        dragStartScrollPosition = self.$cont[0].scrollTop;
+                        dragContBarRate = self.getMaxScrollPosition() / self.getMaxSliderPosition();
+
+                        console.log("mousedown");
+                        doc.on("mousemove.scroll", function (e) {
+                            console.log("mousemove");
+                            mouseMoveHandler(e);
+                        }).on("mouseup.scroll", function (e) {
+                            console.log("mouseup");
+                            doc.off(".scroll")
+                        })
+                    });
+                }
+            },
+
+            getMaxScrollPosition: function () {
+                var self = this;
+                return Math.max(self.$cont.height(), self.$cont[0].scrollHeight) - self.$cont.height();
+            },
+            getMaxSliderPosition: function () {
+                var self = this;
+                return self.$bar.height() - self.$slider.height();
+            },
+            scrollTo: function (positionVal) {
+                var self = this;
+                self.$cont.scrollTop(positionVal);
+            }
+        })
+
+        win.CusScrollBar = CusScrollBar;
+    })(window, document, jQuery)
+
+    new CusScrollBar({
+        contSelector: ".scroll-wrap",
+        barSelector: ".scroll-bar",
+        sliderSelector: ".scroll-slider"
+    });
+</script>
+</body>
+</html>

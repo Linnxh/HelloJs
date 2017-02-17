@@ -1,0 +1,11 @@
+@charset "utf-8";
+*,body,html{margin:0px; padding:0px;}
+div,ul,li{ margin:0px; padding:0px; list-style:none;}
+
+.newYindao{ background:#f0f0f0;}
+.newYindao .context{ padding:10px 10px;font:normal 0.8rem/1.5rem "微软雅黑"; color:#737373;}
+.newYindao .title{ background:#ffffff;font:normal 1rem/2.5rem "微软雅黑";padding:0px 10px; cursor:pointer;}
+.newYindao li.up .title div{background:url(next.png) no-repeat right center #fff; border:none;}
+.newYindao li .title div{ background:url(prev.png) no-repeat right center #fff; border-bottom:1px solid #d9d9d9;}
+.newYindao li div.context{ display:none;}
+.newYindao li.up div.context{ display:block;}

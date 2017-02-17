@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--引入jqm需导入的包-->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.3.css">
+    <script rel="stylesheet" src="js/jquery-1.8.3.min.js"></script>
+    <script rel="stylesheet" src="js/jquery.mobile-1.4.3.js"></script>
+
+
+</head>
+<body>
+<div data-role="page" id="index">
+
+    <div data-role="header">
+        <h1>Page Title</h1>
+    </div>
+
+    <div role="main" class="ui-content ">
+        <!--<p>Page content goes here.</p>-->
+        <!--<a href="#index2">跳到index2</a>-->
+        <!--<button>按钮一</button>-->
+        <!--<button>按钮一</button>-->
+        <!--<button>按钮一</button>-->
+        <!--<button>按钮一</button>-->
+
+        <form>
+            <div class="ui-field-contain ">
+                <label>始发站</label>
+                <input class="startStation">
+            </div>
+            <div class="ui-field-contain ">
+                <label>终点站</label>
+                <input class="endStation">
+            </div>
+            <div class="ui-field-contain ">
+                <label>车次</label>
+                <input class="StationNumber">
+            </div>
+        </form>
+
+        <button id="search">搜索</button>
+        <!--<table data-role="table" data-mode="reflow" class="ui-responsive">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>第一列</th>-->
+        <!--<th>第二列</th>-->
+        <!--<th>第三列</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<th>123</th>-->
+        <!--<th>456</th>-->
+        <!--<th>789</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>123</th>-->
+        <!--<th>456</th>-->
+        <!--<th>789</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>123</th>-->
+        <!--<th>456</th>-->
+        <!--<th>789</th>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+
+
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#index2">
+                <h2>G1次</h2>
+                <p>北京-上海</p>
+                <p>用时：4.34</p>
+                <p class="ui-li-aside">09：00开</p>
+            </a></li>
+            <li><a href="#index2">按钮1</a></li>
+            <li><a href="#index2">按钮1</a></li>
+        </ul>
+    </div>
+
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="camera">按钮1</a></li>
+                <li><a href="#" data-icon="camera">按钮1</a></li>
+                <li><a href="#" data-icon="camera">按钮1</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="index2">
+    <div data-role="header">
+        <h1>Page Title2</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p>Page content goes here2.</p>
+    </div>
+    <div data-role="footer">
+        <h4>Page Footer2</h4>
+    </div>
+</div>
+
+
+<script>
+
+    var urlPre = "https://crossorigin.me/"; //跨域中转
+    var url1 = "http://www.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getStationAndTimeByStationName?UserID=";
+    var url2 = "www.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getStationAndTimeDataSetByLikeTrainCode?TrainCode=G1&UserID=";
+    var url3 = "www.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getDetailInfoByTrainCode?UserID=";
+
+    var  stationNameResponse=get
+    $("#search").on("click", function () {
+        var _data = {};
+
+        if ($(".startStation").val() && $(".endStation").val()) {
+            alert("1")
+            $.ajax({
+                type: "get",
+                url: urlPre + url1,
+//                dataType: "json",
+                data: {
+                    StartStation: "北京",
+                    ArriveStation: "上海",
+                },
+                success: function (data) {
+                    console.log("data-" + data);
+                    $("#lrResult").html(data);
+                    if (data.success) {
+                        $("#lrResult").html = data;
+                    } else {
+
+
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误")
+                }
+            })
+        } else if (!$(".stationnumber").val()) {
+            alert("2")
+            $.ajax({
+                type: "get",
+                url: urlPre + url2,
+//                dataType: "json",
+                data: {
+//                    TrainCode: $(".stationnumber").val(),
+                },
+                success: function (data) {
+                    console.log("data-" + data);
+                    $("#lrResult").html(data);
+                    if (data.success) {
+                        $("#lrResult").html = data;
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误")
+                }
+            })
+        }
+
+
+        function getStationNameResponse() {
+            return "";
+        }
+
+
+    })
+</script>
+
+
+</body>
+</html>

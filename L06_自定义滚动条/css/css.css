@@ -1,0 +1,81 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-size: 100%;
+    font: inherit;
+    -webkit-text-size-adjust: none;
+}
+
+.scroll-demo {
+    margin: 20px auto;
+    border: 1px #71df79 solid;
+    width: 402px;
+}
+
+.scroll-demo .scroll-tab {
+    height: 30px;
+    border-bottom: 1px #71df79 solid;
+}
+
+.scroll-demo .scroll-tab .tab-item {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    float: left;
+
+    line-height: 30px;
+}
+
+.scroll-demo .scroll-tab .tab-active {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+
+    background: #bedfc7;
+}
+
+.scroll-demo .scroll-wrap {
+    position: relative;
+}
+
+.scroll-demo .scroll-wrap .scroll-content {
+    padding: 10px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.scroll-demo .scroll-wrap .scroll-content p {
+    line-height: 25px;
+}
+
+.scroll-demo .scroll-wrap .scroll-bar {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 10px;
+    height: 100%;
+    background-color: #cccccc;
+}
+.scroll-demo .scroll-wrap .scroll-bar .scroll-slider{
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    width: 8px;
+    height: 20px;
+    background-color: #fff;
+}
+

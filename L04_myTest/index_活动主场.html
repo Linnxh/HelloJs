@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <style>
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-size: 0.3rem;
+        }
+
+        .container {
+            width: 100%;
+            background: url("img/scratch-bg.png") no-repeat center;
+            background-size: 100%;
+            height: 3rem;
+        }
+
+        .rightArea {
+            float: right;
+            /*width: 2.4rem;*/
+            margin-right: 0.2rem;
+        }
+
+        .container .animateArea {
+            width: 2.4rem;
+            height: 1.5rem;
+            text-align: center;
+            line-height: 0.5rem;
+            margin-top: 0.5rem;
+            background: #ff0033;
+            border-radius: 0.2rem;
+            color: #fff3cf;
+            position: relative;
+            /*display: inline-block;*/
+
+        }
+
+        .container .rightBox {
+            position: absolute;
+            top: 0;
+            width: 2.4rem;
+            text-align: center;
+            line-height: 0.5rem;
+            color: #fff3cf;
+            padding: 0.2rem 0rem 0.3rem 0rem;
+
+            /*display: inline-block;*/
+
+        }
+
+        .container .textSpan {
+            /*display: inline-block;*/
+            width: 100%;
+            text-align: center;
+            margin-top: 0.15rem;
+
+        }
+
+        .container .textLeft {
+            float: left;
+            margin-left: 3rem;
+            width: 3rem;
+            /*font-size: 0.25rem;*/
+            margin-top: 0.6rem;
+            color: #a31615;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="textLeft">
+        <font style="font-size: 20px" >浪蝶狂蜂肯定是减肥</font>
+        <small><font >浪蝶狂蜂肯定是减肥</font></small>
+        <p style="font-size: 20px" >
+            岁末狂欢，挂卡抽大奖<br>
+            岁末狂欢，挂卡抽大奖<br>
+            10:00、12：33、23：00来拼人品吧！！！！！！
+        </p>
+        <span></span>
+    </div>
+    <div class="rightArea">
+        <div class="animateArea">
+            <div class="rightBox">
+                <p>本时段可抢4次</p>
+                <p>马上抢</p>
+            </div>
+        </div>
+
+        <p class="textSpan">还有2次抽奖机会</p>
+    </div>
+</div>
+
+<script>
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 720;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+
+    $(".rightArea").live("click", function () {
+
+        $(".animateArea").css({
+            width: "0.01rem",//宽度设置为0.01
+        }).animate({
+            width: "2.4rem",//300ms执行动画将宽度设置为2.4，
+        }, 300,function () {
+            console.log("动画执行完成")
+        });
+
+    });
+</script>
+</body>
+</html>
