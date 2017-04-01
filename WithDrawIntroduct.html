@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <style>
+        *, body, html {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #ededed;
+            z-index: 2;
+        }
+
+        div, ul, li {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #content {
+            background-color: #ffffff;
+            z-index: 3;
+        }
+
+        .text {
+            padding: 0.4rem 0.3rem 0.0rem 1rem;
+            font: normal 0.77rem "微软雅黑";
+            color: #666666;
+        }
+
+        .first {
+            padding: 1rem 0.3rem 0.0rem 1rem;
+            font: normal 1.0rem "微软雅黑";
+        }
+
+        .sencond {
+            padding: 2rem 0.3rem 0.0rem 1rem;
+            font: normal 1.0rem "微软雅黑";
+        }
+
+        #line {
+            width: 100%;
+            height: 0.05rem;
+            background-color: #d9d9d9;
+            margin-top: 1rem;
+        }
+    </style>
+    <title>提现说明WithDrawIntroduct</title>
+</head>
+<body>
+
+<div id="content">
+    <div class=" first"> 提现时间：</div>
+    <div class="text">系统将于每月1号、15号将冻结佣金转换为可提现佣金，佣兵可提现。</div>
+    <div class=" sencond"> 提现须知：</div>
+    <div class="text"> 1.提现是指把佣兵账户中的可提现金额提取到银行卡中，每天最多可提现1次，单笔提现金额必须小于100万元；</div>
+    <div class="text"> 2.提现手续费：佣兵提现需按提现金额的0.22%收取手续费，单笔手续费小于0.1元的，按0.1元收取；若提现金额大于1万元，免手续费。</div>
+    <div class="text"> 3.提现到账时间为：当日21:00前进行的提现，当日处理，易宝直联银行卡将于第二个工作日12:00之前到账，非直联银行将于五个工作日内到账
+        （具体到账时间依照银行处理为准）；当日21:00后的提现操作，将顺延至下一个工作日处理；
+    </div>
+    <div class="text"> 4.法定节假日和非工作日银行不处理提现，提现时间顺延 ；</div>
+    <div class="text"> 5.直联银行：工商银行、农业银行、建设银行、深圳发展银行、招商银行、北京银行、中信银行、中国银行、兴业银行、平安银行、广发银行、华夏银行
+        非直联银行：交通银行、中国光大银行、民生银行、邮储银行等其他银行
+    </div>
+    <div id="line"></div>
+</div>
+<script src="http://static.zhtxw.cn/mobile/base/js/public/jquery-1.8.3.min.js?v=2.0.2.6"/>
+
+<script type="text/javascript">
+    /*设置rem*/
+    var winW = document.documentElement.clientWidth;
+    var desW = 750;
+    var fontSize = 100;
+    var rem = desW / fontSize;
+    if (winW > desW) {
+        winW = desW;
+    }
+    document.documentElement.style.fontSize = winW / rem + "px";
+
+</script>
+</body>
+</html>
+

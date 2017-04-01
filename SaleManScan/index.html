@@ -3,7 +3,45 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
     <title>扫码下载</title>
-    <link rel="stylesheet" type="text/css" href="saleman_scan.css">
+    <style>
+
+        html, body {
+            background: #fff;
+            font-family: "STHeitiSc-Light"
+        }
+
+        b, blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul, img {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .salemanTips {
+            text-align: center;
+            margin-top: 0.2rem;
+            color: #999999;
+            font-size: 0.3rem;
+        }
+
+        .saleman_salemantitle {
+            color: #333;
+            font-size: 0.3rem;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        .qrImage {
+            text-align: center;
+            margin: 0.3rem auto 0 auto;
+
+        }
+
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="saleman_scan.css">-->
 </head>
 <body>
 <div class="salemanTips" style="margin-top: 0.3rem">
@@ -44,9 +82,9 @@
 
     window.onload = function () {
 
-        if (getPlarForm()==1) {//Android
+        if (getPlarForm() == 1) {//Android
 
-        } else if (getPlarForm()==2) {//Ios
+        } else if (getPlarForm() == 2) {//Ios
 
         }
         $(".qrImage").qrcode({
