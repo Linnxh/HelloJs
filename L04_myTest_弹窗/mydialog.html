@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="dialogcss/dialogcss.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="btnContent">
+    <button id="btn1">按钮1-未配置任何参数</button>
+    <button id="btn2">按钮2-有确定和取消按钮</button>
+    <button id="btn3">按钮1</button>
+</div>
+<!--<div id="mask">-->
+<!--<div id="dialogContent">-->
+<!--<div id="loadingImgContent">-->
+<!--<div class="loading"></div>-->
+<!--</div>-->
+<!--<button class="ok">确定</button>-->
+<!--<button class="cancel">取消</button>-->
+
+<!--</div>-->
+<!--</div>-->
+<script src="js/zepto.js"></script>
+<script src="js/dialogjs.js"></script>
+<script src="js/xback.js"></script>
+<script>
+    //
+    <!--初始化rem -->
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 20 * (clientWidth / 980) + 'px';
+                };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+
+</script>
+<script>
+    $("#btn1").on("click", function () {
+        console.log("---0-----");
+        $.dialog();
+    })
+    $("#btn2").on("click", function () {
+        console.log("---0-----");
+        var dialog = $.dialog({
+            type: "warn",
+            buttons: [
+                {
+                    type: "ok",
+                    text: "确定1",
+                    callback: function () {
+                        alert("点击确定1按钮")
+                    }
+                },
+                {
+                    type: "cancel",
+                    text: "取消"
+                }
+            ]
+        });
+    })
+
+
+    XBack.listen(function(){
+
+        alert('oh! you press the back button');
+    });
+</script>
+</body>
+</html>

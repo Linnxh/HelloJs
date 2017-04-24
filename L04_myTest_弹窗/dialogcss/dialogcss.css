@@ -1,0 +1,103 @@
+/*在font-size:10px时，6rem=60px，如此类推，font-size:20px时，6rem=120px。*/
+
+html {
+    font-size: 20px;
+}
+.hidden{
+    display: none;
+}
+.btnContent {
+    text-align: center;
+}
+
+.btnContent button {
+    display: inline-block;
+    width: 98%;
+    height: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    background-color: #1fc195;
+}
+
+#mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(00, 00, 00, .5);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+}
+
+#dialogContent {
+    /*width: 40rem;*/
+    /*height: 30rem;*/
+    /*background-color: #000000;*/
+    /*position: relative;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-left: -20rem;*/
+    /*margin-top: -15rem;*/
+    /*border-radius: 1.5rem;*/
+    /*text-align: center;*/
+    padding: 2em;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+}
+
+#loadingImgContent {
+    width: 8rem;
+    height: 8rem;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 5rem;
+}
+
+.yes {
+    width: 8rem;
+    height: 8rem;
+    text-align: center;
+    background-size: cover;
+    margin:0 auto;
+    background-image: url("../dialogimg/duihao.png");
+}
+
+.loading {
+    width: 8rem;
+    height: 8rem;
+    text-align: center;
+    background-size: cover;
+    margin:0 auto;
+    background-image: url("../dialogimg/prg_loading.png");
+}
+
+.warn {
+    width: 8rem;
+    height: 8rem;
+    text-align: center;
+    background-size: cover;
+    margin:0 auto;
+    background-image: url("../dialogimg/close.png");
+}
+
+#dialogContent button {
+    width:15rem;
+    height: 6rem;
+    border-radius: 3rem;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-left: 2rem;
+    margin-top: 5.5rem;
+    border:none;
+}
+.ok{
+    background-color: #c13b62;
+}
+.cancel{
+    background-color: #42c1a6;
+}

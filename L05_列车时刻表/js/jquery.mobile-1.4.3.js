@@ -1056,7 +1056,7 @@ $.Widget.prototype = {
 		disabled: false,
 
 		// callbacks
-		create: null
+		// create: null
 	},
 	_createWidget: function( options, element ) {
 		element = $( element || this.defaultElement || this )[ 0 ];
