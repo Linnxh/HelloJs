@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+
+    <title>自定义弹窗</title>
     <link href="dialogcss/dialogcss.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="btnContent">
     <button id="btn1">按钮1-未配置任何参数</button>
-    <button id="btn2">按钮2-有确定和取消按钮</button>
-    <button id="btn3">按钮1</button>
+    <button id="btn2">按钮2-有确定和取消按钮,点击取消按钮3s后自动关闭</button>
+    <button id="btn3">按钮3-自动关闭的弹窗,3s</button>
 </div>
 <!--<div id="mask">-->
 <!--<div id="dialogContent">-->
@@ -61,17 +62,27 @@
                 },
                 {
                     type: "cancel",
-                    text: "取消"
+                    text: "取消",
+                    callback:function () {
+                        var d = $.dialog(
+                                {
+                                    type: "yes",
+                                    message: "delete",
+                                    delay: 3000,
+                                }
+                        );
+                    }
                 }
             ]
         });
     })
+    $("#btn3").on("click", function () {
+        $.dialog({
+            delay:3000,
+            type: "warn",
+        });
+    })
 
-
-    XBack.listen(function(){
-
-        alert('oh! you press the back button');
-    });
 </script>
 </body>
 </html>

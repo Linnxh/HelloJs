@@ -18,6 +18,7 @@ html {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     background-color: #1fc195;
+    border: none;
 }
 
 #mask {

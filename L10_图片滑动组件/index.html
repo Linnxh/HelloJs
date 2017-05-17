@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/css.css" rel="stylesheet">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="apple-touch-fullscressn" content="YES"/>
+    <meta name="apple-mobile-web-app-status" content="black"/>
+    <script src="js/jquery-1.8.3.min.js" rel="stylesheet" type="text/javascript"></script>
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, font, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td {
+            background: transparent;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+            font-size: 100%;
+            font: inherit;
+            list-style: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #333;
+            height: 100%;
+            width: 100%;
+        }
+
+        #canvas {
+            /*height: 100%;*/
+            /*width: 100%;*/
+        }
+
+        li {
+            /*height: 100%;*/
+            /*width: 100%;*/
+            display: table-cell;
+            vertical-align: middle;
+            /*display: flex;*/
+            position: absolute;
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            -webkit-backface-visibility: hidden; /***避免动画过程中闪白**/
+        }
+
+        img {
+            /****让图片居中的方式**/
+            /*position: fixed;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            /*-webkit-transform: translateX(-50%) translateY(-50%);*/
+            /*margin: 50vh auto 0;*/
+            /*transform: translateY(-50%);*/
+
+        }
+    </style>
+</head>
+<body>
+<div id="canvas">
+    <!--<ul>-->
+    <!--<li style="height: 640px; -webkit-transform: translate(-380px,0);">-->
+    <!--<img width="360px" src="imgs/1.jpg">-->
+    <!--</li>-->
+    <!--<li style="height: 640px; -webkit-transform: translate(0,0);">-->
+    <!--<img width="360px" src="imgs/2.jpg">-->
+    <!--</li>-->
+    <!--</ul>-->
+</div>
+<script type="text/javascript">
+    //所有的数据
+    var list = [
+        {
+            height: 950,
+            width: 800,
+            img: "imgs/1.jpg"
+        },
+        {
+            height: 1187,
+            width: 900,
+            img: "imgs/2.jpg"
+        },
+        {
+            height: 766,
+            width: 980,
+            img: "imgs/3.jpg"
+        },
+        {
+            height: 754,
+            width: 980,
+            img: "imgs/4.jpg"
+        },
+        {
+            height: 493,
+            img: "imgs/5.jpg",
+            width: 750
+        },
+        {
+            height: 500,
+            img: "imgs/6.jpg",
+            width: 750
+        },
+        {
+            height: 600,
+            img: "imgs/7.jpg",
+            width: 400
+        }];
+    function Slider(opts) {
+        this.wrap = opts.dom;
+        this.list = opts.list;
+
+        this.init();
+        this.renderDOM();
+        this.bindDom();
+    }
+    Slider.prototype.init = function () {
+        this.radio = window.innerHeight / window.innerWidth;
+        this.scaleW = window.innerWidth;
+        this.idx = 0;//索引
+
+    }
+    Slider.prototype.renderDOM = function () {
+        var wrap = this.wrap;
+        var data = this.list;
+        var scal = this.scaleW;
+        var len = data.length;
+        this.outer = document.createElement('ul');
+        for (var i = 0; i < len; i++) {
+            var li = document.createElement('li');
+            var item = data[i];
+            console.log(item);
+            li.style.width = scal + 'px';
+            li.style.height = window.innerHeight + "px";
+            li.style.webkitTransform = 'translate(' + i * scal + 'px,0)';
+
+//                display: -webkit-box;
+//                -webkit-box-pack: center;
+//                -webkit-box-align: center;
+            if (item) {
+                var img = item.img;
+                console.log(img);
+                if (item['height'] / item['width'] > this.radio) {//细长条
+                    li.innerHTML = '<img height="' + window.innerHeight + '" src="' + item['img'] + '">';
+                    console.log(li.innerHTML);
+//                        <img  width="360" src="imgs/1.jpg">
+                } else {
+                    li.innerHTML = '<img width="' + window.innerWidth + '" src="' + item['img'] + '">';
+                    console.log(li.innerHTML);
+                }
+            }
+            this.outer.appendChild(li);
+        }
+        this.outer.style.width = scal + 'px';
+        wrap.appendChild(this.outer);
+        wrap.style.height = window.innerHeight + 'px';
+        wrap.appendChild(this.outer);
+    }
+
+    Slider.prototype.bindDom = function () {
+        var self = this;
+        var scale = self.scaleW;
+        var outer = self.outer;
+        var len = self.list.length;
+
+        var startHandler = function (evt) {
+            self.startX = evt.touches[0].pageX;
+            self.offsetX = 0;
+
+            self.startTime = new Date() * 1;
+
+        }
+        var moveHandler = function (evt) {
+            evt.preventDefault();
+            self.offsetX = evt.touches[0].pageX - self.startX;
+            console.log("offsetX-->" + self.offsetX);
+            var lis = outer.getElementsByTagName('li');
+            var i = self.idx - 1;
+            var m = i + 3;
+            for (i; i < m; i++) {
+//                <li style="height: 640px; -webkit-transform:translate(30px,0) ;">
+                lis[i] && (lis[i].style.webkitTransform = 'translate(' + ((i - self.idx) * self.scaleW + self.offsetX) + 'px,0)');
+                lis[i] && (lis[i].style.webkitTransition = 'none');
+            }
+        }
+        var endHandler = function (evt) {
+            var boundary = scale / 6;
+            var endTime = outer.getElementsByTagName('li');
+            if (endTime - self.startTime > 800) {//满操作
+                if (self.offsetX >= boundary) {
+                    self.go('-1');
+                } else if (self.offsetX <= -boundary) {
+                    self.go('+1');
+                } else {
+                    self.go('0');
+                }
+            } else {
+                if (self.offsetX >= 50) {
+                    self.go('-1');
+                } else if ((self.offsetX < -50)) {
+                    self.go('+1');
+                } else {
+                    self.go('0');
+                }
+            }
+
+        }
+
+        Slider.prototype.go = function (n) {
+            var idx = this.idx;
+            var cidx;
+            var scale = this.scaleW;
+            var lis = this.outer.getElementsByTagName('li');
+            var len = lis.length;
+            if (typeof n == 'number') {
+                cidx = idx;
+            } else if (typeof n == 'string') {
+                cidx = idx + n * 1;
+            }
+            //索引右边超出
+            if (cidx > len - 1) {
+                cidx = len - 1;
+            } else if (cidx < 0) {
+                cidx = 0;
+            }
+            this.idx = cidx;//将当前索引值重置
+            lis[cidx].style.webkitTransition = '-webkit-transform 5s,ease-out';
+            lis[cidx - 1] && (lis[cidx - 1].style.webkitTransition = '-webkit-transform 5s,ease-out');
+            lis[cidx + 1] && (  lis[cidx + 1].style.webkitTransition = '-webkit-transform 5s,ease-out');
+
+            lis[cidx].style.webkitTransform = 'translate(0,0)';
+            lis[cidx - 1] && ( lis[cidx - 1].style.webkitTransform = 'translate(-' + scale + 'px,0)');
+            lis[cidx + 1] && ( lis[cidx + 1].style.webkitTransform = 'translate(' + scale + 'px,0)');
+
+
+        }
+        outer.addEventListener('touchstart', startHandler)
+        outer.addEventListener('touchmove', moveHandler)
+        outer.addEventListener('touchend', endHandler)
+    }
+
+    new Slider({
+        'dom': document.getElementById("canvas"),
+        'list': list,
+    })
+</script>
+
+
+</body>
+</html>

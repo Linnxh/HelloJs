@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, font, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        button,
+        table, caption, tbody, tfoot, thead, tr, th, td {
+            background: transparent;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            font: inherit;
+        }
+
+        /*title*/
+        #pId {
+            font-size: 0.4rem;
+            width: 100%;
+            height: 1rem;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 1rem;
+            background-color: #1fc195;
+            color: white;
+        }
+
+        /*title下面*/
+        #header_bottmon {
+            height: 0.8rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #header_bottmon div {
+            font-size: 0.3rem;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            width: 50%;
+        }
+
+        #header_bottmon_left {
+            margin-left: 0.5rem;
+        }
+
+        #header_bottmon_right {
+            margin-right: 0.5rem;
+            text-align: right;
+        }
+
+        #header_bottmon_right button {
+            height: 0.6rem;
+            line-height: 0.6rem;
+            padding: 0rem 0.3rem;
+            border: solid 1px #f5f5f5;
+            border-radius: 1rem;
+            margin: 0.1rem 0;
+            background: #f5f5f5;
+            text-align: center;
+            color: #1fc195;
+        }
+
+        .line {
+            height: 1px;
+            background-color: #ededed;
+            width: 100%;
+        }
+
+        /*list条目*/
+        #ul_main {
+            padding-bottom: 2.4rem;
+        }
+
+        .li_item {
+            padding: 0.2rem 0.3rem;
+            display: flex;
+            border-bottom: 1px solid #ededed;
+        }
+
+        .li_item_more {
+            text-align: center;
+            font-size: 0.22rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .li_item img {
+            width: 1.0rem;
+            height: 1.0rem;
+
+        }
+
+        .li_item .li_item_center {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 0.3rem;
+        }
+
+        .li_item .li_item_center p {
+            font-size: 0.3rem;
+        }
+
+        .li_item .li_item_center .li_item_center_center {
+            width: 100%;
+            display: inline-block;
+            margin-top: 0.1rem;
+        }
+
+        /*.li_item .li_item_center .li_item_center_center {*/
+        /*width: 100%;*/
+        /*}*/
+        /**/
+        .li_item .li_item_center .li_item_work {
+            float: left;
+
+        }
+
+        .li_item .li_item_center .li_item_saraly {
+            float: right;
+        }
+
+        .li_item .li_item_center .li_item_time {
+            font-size: 0.25rem;
+            margin-top: 0.1rem;
+        }
+
+        /*底部tab*/
+        #bottmon {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            height: 1rem;
+            width: 100%;
+            font-size: 0.3rem;
+            color: #1fc195;
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        #bottmon .bottmon_tab_active {
+            background-color: #e7f3f0;
+        }
+
+        #bottmon .bottom_item {
+            -webkit-box-flex: 1;
+            text-align: center;
+            height: 1rem;
+            line-height: 1rem;
+        }
+
+        #bottmon .icon {
+
+            width: 18px;
+            height: 17px;
+            display: inline-block;
+            margin-bottom: -2px;
+        }
+
+        #bottmon .bottmon_item_work {
+            background: url("img/icon_lagou2.png") no-repeat -32px -2.5px;
+            background-size: 250px 250px;
+        }
+
+        #bottmon .bottmon_item_search {
+            background: url("img/icon_lagou2.png") no-repeat -14px -2.5px;
+            background-size: 250px 250px;
+        }
+
+        #bottmon .bottmon_item_mine {
+            background: url("img/icon_lagou2.png") no-repeat -52.5px -2px;
+            background-size: 250px 250px;
+        }
+
+        #bottmon .bottmon_tab_active .bottmon_item_work {
+            background: url("img/icon_lagou2.png") no-repeat -32px -20.5px;
+            background-size: 250px 250px;
+        }
+
+        #bottmon .bottmon_tab_active .bottmon_item_search {
+            background: url("img/icon_lagou2.png") no-repeat -14px -20.5px;
+            background-size: 250px 250px;
+        }
+
+        #bottmon .bottmon_tab_active .bottmon_item_mine {
+            background: url("img/icon_lagou2.png") no-repeat -52.5px -19.5px
+            background-size: 250px 250px;
+        }
+
+        #bottmon .test {
+            /*vertical-align: middle;*/
+            /*background-color: #00aa18;*/
+        }
+
+        /*底部下载栏*/
+        #bottmon_banner {
+            position: fixed;
+            left: 0;
+            bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            background-color: #262626;
+            width: 100%;
+            padding: 0.2rem;
+            box-sizing: border-box;
+        }
+
+        #bottmon_banner a {
+            background-color: transparent;
+            position: relative;
+            left: 0%;
+            top: 0;
+        }
+
+        #bottmon_banner .bottom_container_center {
+            margin: 0 0.1rem;
+        }
+
+        #bottmon_banner .bottom_container img {
+            display: block;
+            border: none;
+            outline: none;
+            padding: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<p id="pId">拉勾网</p>
+<div id="header_bottmon">
+    <div id="header_bottmon_left">10秒钟定制职位</div>
+    <div id="header_bottmon_right">
+        <button>去登录</button>
+    </div>
+</div>
+<div class="line"></div>
+<ul id="ul_main">
+    <li class="li_item"><img src="img/company_cover.png">
+        <div class="li_item_center"><p>云莱芜</p>
+            <div class="li_item_center_center"><p class="li_item_work">剧本开发与版权经济</p>
+                <p class="li_item_saraly">10K-20K</p></div>
+            <p class="li_item_time">今天：19：30</p></div>
+    </li>
+    <li class="li_item"><img src="img/company_cover.png">
+        <div class="li_item_center"><p>云莱芜</p>
+            <div class="li_item_center_center"><p class="li_item_work">剧本开发与版权经济</p>
+                <p class="li_item_saraly">10K-20K</p></div>
+            <p class="li_item_time">今天：19：30</p></div>
+    </li>
+    <li class="li_item"><img src="img/company_cover.png">
+        <div class="li_item_center"><p>云莱芜</p>
+            <div class="li_item_center_center"><p class="li_item_work">剧本开发与版权经济</p>
+                <p class="li_item_saraly">10K-20K</p></div>
+            <p class="li_item_time">今天：19：30</p></div>
+    </li>
+    <li class="li_item">
+        <img src="img/company_cover.png">
+        <div class="li_item_center">
+            <p>云莱芜</p>
+            <div class="li_item_center_center">
+                <p class="li_item_work">剧本开发与版权经济</p>
+                <p class="li_item_saraly">10K-20K</p>
+            </div>
+            <p class="li_item_time">今天：19：30</p>
+        </div>
+    </li>
+
+    <li class="li_item ">
+        <p class="li_item_more" onclick="loadMore()"> 点击加载下一页。。</p>
+    </li>
+</ul>
+<!--底部download-->
+<div id="bottmon_banner" onclick="downloadApp()">
+    <!--<a href="http://www.baidu.com">-->
+    <div class="bottom_container bottom_container_left"><img src="img/download_logo_new.png"></div>
+    <div class="bottom_container bottom_container_center"><img src="img/download_txt_new.png"></div>
+    <div class="bottom_container bottom_container_right"><img src="img/download_btn_new.png"></div>
+    <!--</a>-->
+</div>
+<!--底部tab-->
+<div id="bottmon">
+    <div class="bottom_item bottmon_tab_active" onclick="changeTab(0)"><p class="icon bottmon_item_work"></p><span
+            class="test">职位</span></div>
+    <div class="bottom_item" onclick="changeTab(1)"><p class="icon bottmon_item_search"></p><span class="test">搜索</span>
+    </div>
+    <div class="bottom_item" onclick="changeTab(2)"><p class="icon bottmon_item_mine"></p><span class="test">我的</span>
+    </div>
+</div>
+
+<div></div>
+<script>
+    //http://www.cnblogs.com/lyzg/p/4877277.html#
+    var Dpr = 1,
+            uAgent = window.navigator.userAgent;
+    //    var isIOS = uAgent.match(/iphone/i);
+    //    var isYIXIN = uAgent.match(/yixin/i);
+    //    var is2345 = uAgent.match(/Mb2345/i);
+    //    var ishaosou = uAgent.match(/mso_app/i);
+    //    var isSogou = uAgent.match(/sogoumobilebrowser/ig);
+    //    var isLiebao = uAgent.match(/liebaofast/i);
+    //    var isGnbr = uAgent.match(/GNBR/i);
+    function resizeRoot() {
+        var wWidth = (screen.width > 0) ? (window.innerWidth >= screen.width || window.innerWidth == 0) ? screen.width :
+                        window.innerWidth : window.innerWidth,
+                wDpr, wFsize;
+        var wHeight = (screen.height > 0) ? (window.innerHeight >= screen.height || window.innerHeight == 0) ?
+                screen.height : window.innerHeight : window.innerHeight;
+        if (window.devicePixelRatio) {
+            wDpr = window.devicePixelRatio;
+        } else {
+            wDpr = isIOS ? wWidth > 818 ? 3 : wWidth > 480 ? 2 : 1 : 1;
+        }
+//        if (isIOS) {
+//            wWidth = screen.width;
+//            wHeight = screen.height;
+//        }
+        // if(window.orientation==90||window.orientation==-90){
+        //     wWidth = wHeight;
+        // }else if((window.orientation==180||window.orientation==0)){
+        // }
+        if (wWidth > wHeight) {
+            wWidth = wHeight;
+        }
+        wFsize = wWidth > 1080 ? 144 : wWidth / 7.5;
+        wFsize = wFsize > 32 ? wFsize : 32;
+        window.screenWidth_ = wWidth;
+//        if (isYIXIN || is2345 || ishaosou || isSogou || isLiebao || isGnbr) { //YIXIN 和 2345 这里有个刚调用系统浏览器时候的bug，需要一点延迟来获取
+//            setTimeout(function () {
+//                wWidth = (screen.width > 0) ? (window.innerWidth >= screen.width || window.innerWidth == 0) ?
+//                        screen.width : window.innerWidth : window.innerWidth;
+//                wHeight = (screen.height > 0) ? (window.innerHeight >= screen.height || window.innerHeight ==
+//                0) ? screen.height : window.innerHeight : window.innerHeight;
+//                wFsize = wWidth > 1080 ? 144 : wWidth / 7.5;
+//                wFsize = wFsize > 32 ? wFsize : 32;
+//                // document.getElementsByTagName('html')[0].dataset.dpr = wDpr;
+//                document.getElementsByTagName('html')[0].style.fontSize = wFsize + 'px';
+//                document.getElementById("fixed").style.display = "none";
+//            }, 500);
+//        } else {
+        // document.getElementsByTagName('html')[0].dataset.dpr = wDpr;
+        document.getElementsByTagName('html')[0].style.fontSize = wFsize + 'px';
+//        document.getElementById("fixed").style.display = "none";
+//        }
+        // alert("fz="+wFsize+";dpr="+window.devicePixelRatio+";UA="+uAgent+";width="+wWidth+";sw="+screen.width+";wiw="+window.innerWidth+";wsw="+window.screen.width+window.screen.availWidth);
+    }
+    resizeRoot();
+    if (location.protocol === "https:") {
+        location.href = location.href.replace("https:", "http:")
+    }
+</script>
+<script>
+    var json = {
+        "content": {
+            "data": {
+                "isLogin": false,
+                "page": {
+                    "pageSize": 15,
+                    "start": "30",
+                    "result": [
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2813340,
+                            "positionName": "商务拓展经理",
+                            "city": "杭州",
+                            "createTime": "今天 16:12",
+                            "salary": "8k-16k",
+                            "companyId": 169675,
+                            "companyLogo": "img/company_cover2.jpg",
+                            "companyName": "Terminai机慧科技",
+                            "companyFullName": "杭州机慧科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2811584,
+                            "positionName": "数据公关岗",
+                            "city": "深圳",
+                            "createTime": "今天 16:11",
+                            "salary": "6k-8k",
+                            "companyId": 113843,
+                            "companyLogo": "img/company_cover3.jpg",
+                            "companyName": "一家伟大的互联网金融服务企业",
+                            "companyFullName": "深圳市排排网投资管理股份有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2809784,
+                            "positionName": "产品助理",
+                            "city": "广州",
+                            "createTime": "今天 15:56",
+                            "salary": "4k-5k",
+                            "companyId": 12137,
+                            "companyLogo": "img/company_cover3.jpg",
+                            "companyName": "8684",
+                            "companyFullName": "广州天趣网络科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2821834,
+                            "positionName": "大数据开发工程师",
+                            "city": "广州",
+                            "createTime": "今天 15:56",
+                            "salary": "8k-16k",
+                            "companyId": 41259,
+                            "companyLogo": "img/company_cover4.jpg",
+                            "companyName": "新德汇",
+                            "companyFullName": "珠海市新德汇信息技术有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2813059,
+                            "positionName": "校园招聘-英语老师",
+                            "city": "北京",
+                            "createTime": "今天 15:54",
+                            "salary": "5k-8k",
+                            "companyId": 3328,
+                            "companyLogo": "img/company_cover3.jpg",
+                            "companyName": "好未来",
+                            "companyFullName": "北京世纪好未来教育科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2813209,
+                            "positionName": "校园招聘-人力管培生",
+                            "city": "北京",
+                            "createTime": "今天 15:54",
+                            "salary": "6k-9k",
+                            "companyId": 3328,
+                            "companyLogo": "img/company_cover3.jpg",
+                            "companyName": "好未来",
+                            "companyFullName": "北京世纪好未来教育科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2803173,
+                            "positionName": "销售顾问-洛阳",
+                            "city": "洛阳",
+                            "createTime": "今天 15:54",
+                            "salary": "6k-12k",
+                            "companyId": 34683,
+                            "companyLogo": "img/company_cover.png",
+                            "companyName": "买单侠",
+                            "companyFullName": "上海秦苍信息科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2803212,
+                            "positionName": "销售顾问-郑州",
+                            "city": "郑州",
+                            "createTime": "今天 15:54",
+                            "salary": "6k-12k",
+                            "companyId": 34683,
+                            "companyLogo": "img/company_cover2.jpg",
+                            "companyName": "买单侠",
+                            "companyFullName": "上海秦苍信息科技有限公司"
+                        },
+                        {
+                            "logger": {
+                                "traceCapable": true,
+                                "name": "com.lagou.entity.mobile.MobilePosition"
+                            },
+                            "positionId": 2805818,
+                            "positionName": "数据工程师",
+                            "city": "杭州",
+                            "createTime": "今天 15:54",
+                            "salary": "10k-20k",
+                            "companyId": 148372,
+                            "companyLogo": "img/company_cover3.jpg",
+                            "companyFullName": "杭州美间科技有限公司"
+                        }
+                    ],
+                    "totalCount": "220451",
+                    "pageNo": 3
+                }
+            },
+            "rows": []
+        },
+        "message": "第3页数据,每页15条, 查询成功!",
+        "state": 1
+    };
+
+    function loadMore() {
+        var result = json.content.data.page.result;
+        for (var i = 0; i < result.length; i++) {
+            var dataitem = result[i];
+            var positionName = dataitem.positionName;
+            var createTime = dataitem.createTime;
+            var salary = dataitem.salary;
+            var companyName = dataitem.companyName;
+            var companyLogo = dataitem.companyLogo;
+
+            console.log(companyName);
+//            <li class="li_item">
+//                <img src="img/company_cover.png">
+//                <div class="li_item_center">
+//                    <p>云莱芜</p>
+//                    <div class="li_item_center_center">
+//                        <p class="li_item_work">剧本开发与版权经济</p>
+//                        <p class="li_item_saraly">10K-20K</p>
+//                     </div>
+//                     <p class="li_item_time">今天：19：30</p>
+//                </div>
+//            </li>
+
+            var li = document.createElement('li');
+//            li.className='li_item';
+            li.setAttribute('class', 'li_item')
+            var img = document.createElement('img');
+            img.src = companyLogo;
+//            var img = '<img src=" ' + companyLogo + '">';
+
+            var div_li_item_center = document.createElement('div');
+            div_li_item_center.setAttribute('class', 'li_item_center');
+            div_li_item_center.innerHTML = '<p>' + companyName + '</p>';
+            console.log("333--->" + div_li_item_center.innerHTML);
+
+            var div_li_item_center_center = document.createElement('div');
+            div_li_item_center_center.setAttribute('class', 'li_item_center_center');
+            div_li_item_center_center.innerHTML =
+                    '<p class="li_item_work">' + positionName + '</p>' +
+                    '<p class="li_item_saraly">' + salary + '</p>';
+
+            var p_li_item_time = document.createElement('div');
+            p_li_item_time.setAttribute('class', 'li_item_time');
+            p_li_item_time.innerHTML = createTime;
+
+            div_li_item_center.appendChild(div_li_item_center_center);
+            div_li_item_center.appendChild(p_li_item_time);
+            console.log(li.innerHTML);
+
+            li.appendChild(img);
+            li.appendChild(div_li_item_center);
+            var ul_main = document.getElementById("ul_main");
+            ul_main.appendChild(li);
+
+        }
+
+        //将加载条删除
+        var li_item_more = document.getElementsByClassName('li_item_more');
+        var loadMore = li_item_more[0].parentNode;
+        loadMore.remove();
+
+        //添加
+
+//        <li class="li_item ">
+//                <p class="li_item_more" onclick="loadMore()"> 点击加载下一页。。</p>
+//        </li>
+        var ul_main = document.getElementById("ul_main");
+        var li_more = document.createElement('li');
+        li_more.className = 'li_item';
+        li_more.innerHTML = '<p class="li_item_more" onclick="loadMore()">点击加载下一页</p>';
+        ul_main.appendChild(li_more);
+
+    }
+
+    function downloadApp() {
+        //总结js集中跳转的方法
+        if (confirm("你确定要下载？是－选择确定，否-选择取消")) {
+
+            //直接跳转式：（location 属性是兼容所有浏览器的。因此在实现页面跳转的时候还是使用这个比较靠谱，在本窗口跳转，覆盖原有内容）
+            window.location.href = "https://github.com/cailelanghuazhizi"
+
+            //开新窗口：（新建窗口跳转）
+            window.open('https://github.com/cailelanghuazhizi', '', 'height=500,width=611,scrollbars=yes,status=yes')
+
+            //replace 会替换之前的网址，后退会无效
+            window.location.replace("https://github.com/cailelanghuazhizi");
+
+            // go可以指定具体的数值，back则只能跳转到前一页
+            window.history.go(-1);
+            window.history.back();
+
+            //https://my.oschina.net/justdo/blog/118391
+            //window多层嵌套时，self指的是本页跳转  top最外层的页面跳转
+            self.location = 'https://github.com/cailelanghuazhizi';
+            top.location = 'https://github.com/cailelanghuazhizi';
+
+        }
+
+    }
+
+    //切换tab
+    function changeTab(index) {
+        top.location.href = "";
+        var bottom_item_list = document.getElementsByClassName("bottom_item");
+        for (var i = 0; i < bottom_item_list.length; i++) {
+            var bottom_list = bottom_item_list[i];
+            bottom_item_list.removeClass("bottmon_tab_active");
+//            if (index == i) {
+//                break;
+//            } else {
+//                bottom_list.addClass("bottmon_tab_active");
+//            }
+        }
+
+    }
+
+</script>
+</body>
+</html>

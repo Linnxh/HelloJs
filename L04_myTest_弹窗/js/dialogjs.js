@@ -4,7 +4,6 @@
 
 ;(function ($) {
     var Dialog = function (config) {
-        console.log("000-----");
         var _this_ = this;
         this.config = {
             type: "waitint",
@@ -29,6 +28,12 @@
         this.img = $('<div class=""></div>');
         this.create();
 
+        if (config.delay) {
+            window.setTimeout(function () {
+                this.mask.remove();
+                // _this_.close();
+            }, config.delay);
+        }
     };
     Dialog.prototype = {
         create: function () {

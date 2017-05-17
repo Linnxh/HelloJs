@@ -1,0 +1,4 @@
+
+.dialog .bar {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; MIN-HEIGHT: 15px; BACKGROUND: #000; PADDING-BOTTOM: 6px; CURSOR: move; COLOR: #fff; PADDING-TOP: 6px; display:none
+}
